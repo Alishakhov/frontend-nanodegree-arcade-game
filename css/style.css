@@ -1,3 +1,20 @@
 body {
     text-align: center;
 }
+
+ #btn {
+    cursor: pointer;
+}
+dialog {
+    width: 240px;
+    height: auto;
+    border: #ffffff;
+    position: absolute;
+    background: #FFF;
+    margin-top: 200px;
+}
+
+button {
+    background: #ff0;
+    padding: 10px 10px;
+}
