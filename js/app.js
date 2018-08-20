@@ -1,10 +1,4 @@
-// Enemies our player must avoid
 var Enemy = function(x, y, speed) {
-    // Variables applied to each of our instances go here,
-    // we've provided one for you to get started
-
-    // The image/sprite for our enemies, this uses
-    // a helper we've provided to easily load images
     this.x = x;
     this.y = y;
     this.speed = speed;
@@ -19,7 +13,9 @@ Enemy.prototype.update = function(dt) {
     // all computers.
     this.x = this.x + this.speed * dt;
    
-    // starting position
+    // this condition is for bugs after go off the screen and 
+    //and come back at the position -101 at least to look like
+    //they are naturally heads come out slowly. starting position
     if(this.x >= 505) {
         this.x = -101;
       }
@@ -37,7 +33,6 @@ var Hero = function () {
     this.blockHeight = 83;
     this.blockWidth = 101;
     this.sprite = 'images/char-boy.png';
-   // this.win = false;
 };
 
 // This class requires an render() 
@@ -46,23 +41,27 @@ Hero.prototype.render = function() {
 };
 
 // This class requires an update()
-
 Hero.prototype.update = function() {
     //loop over each enemy bugs 
    for(let enemy of allEnemies) {
        if(this.y === enemy.y && (enemy.x + 41 > this.x && enemy.x < this.x + 41)){
             this.x = 202;
             this.y = 392;
+           // alert('Try again!');
          }   
-      //enemy.width = 101 - 60 = 41 the 60 from the top this.y = 392; //83*4+60
+      //enemy's length = 101 - 60 = 41 the 60 from the top this.y = 392; //83*4+60
    }
 
+ Hero.prototype.reset = function() {
+     this.x = 202;
+     this.y = 392;
+ }
   //i got the -23 from the console this.y
-     if(this.y === -23) {
-       //  this.win = true;
-        showModal(); //if I showModal() below the  win.cancelAnimation(main); the Modal box didnot show/
-        win.cancelAnimation(main);
-     }
+  //when I tested this.y < 0  also works
+  //for testing line 62 to 64 have moved to engine.js
+    /* if(this.y === -23 ) {
+       this.win = true;
+     }*/
   // console.log(this.y);
 };
 
@@ -73,21 +72,19 @@ Hero.prototype.handleInput = function(keyPress) {
         //404 = 505 - 101
     }else if(keyPress === "right" && this.x < 404) {
         this.x += this.blockWidth;
-
+ 
         //0 is the original point
-    }else if(keyPress === "up" && this.y > 0) {
+        //actually keyup no need this.y > 0
+    }else if(keyPress === "up") {
         this.y -= this.blockHeight;
     }else if(keyPress === "down" && this.y < 392) {
         this.y += this.blockHeight;
     }
 };
 
-
 // Now instantiate your objects.
-// Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-
-
+const player = new Hero();
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
@@ -102,14 +99,18 @@ document.addEventListener('keyup', function(e) {
     player.handleInput(allowedKeys[e.keyCode]);
 });
 
-//instantiate Enemy object
+//instantiate Enemy objects
 const enemy1 = new Enemy(-101, 60, 200);
 const enemy2 = new Enemy(-201, 226, 250);
 const enemy3 = new Enemy(-101, 143, 320);
-allEnemies = [];
-allEnemies.push(enemy1, enemy2, enemy3);
+const enemy4 = new Enemy(-101, 226, 200);
+const enemy5 = new Enemy(-101, 60, 400);
 
-const player = new Hero();
+// Place all enemy objects in an array called allEnemies
+allEnemies = [enemy1, enemy2, enemy3, enemy4, enemy5];
+//allEnemies.push(enemy1, enemy2, enemy3, enemy4, enemy5);
+
+
 
 //https://github.com/SSQ/Udacity-FEND-P7-Classic-Arcade-Game-Clone/blob/master/js/app.js
 //https://matthewcranford.com/arcade-game-walkthrough-part-5-adding-enemies
@@ -117,26 +118,3 @@ const player = new Hero();
 
 
 
-
-let btn = document.querySelector('#btn');
-let modal = document.querySelector('#modal');
-
-
-function showModal() {
-    modal.style.display = "block";
-    
-}
-
-btn.addEventListener('click', function() {
-    modal.style.display = "none";
-    player.x = 202;
-    player.y = 392;
-    //player.win = false;
-    win.requestAnimationFrame(main);
-});
-
-//to do list
-
-//the showModal function working
-// got the bug and the hero on the same y but havent compare them yet
-//sstop the animation when modal pop up.

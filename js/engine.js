@@ -27,6 +27,9 @@ var Engine = (function(global) {
     canvas.width = 505;
     canvas.height = 606;
     doc.body.appendChild(canvas);
+
+ let btn = document.querySelector('#btn');
+ let modal = document.querySelector('#modal');
     
  //const dialog = document.getElementById('modal');
     /* This function serves as the kickoff point for the game loop itself
@@ -57,18 +60,29 @@ var Engine = (function(global) {
          * function again as soon as the browser is able to draw another frame.
          */
         
-         win.requestAnimationFrame(main);
-        
-        
-       
+        if(player.y === -23) {
+            modal.style.display = "block";
+            win.cancelAnimationFrame(main);
+        }else {
+            win.requestAnimationFrame(main);
+        }
+         // for testing 64 to 70
+           /* if(player.win === true) {
+                win.cancelAnimationFrame(main);
+                modal.style.display = "block";
+            }else {
+                win.requestAnimationFrame(main);
+            }*/
     }
-
-    /*playAgainBtn.addEventListener('click', function(){
+//I have tried to add  addEventListener in app,js didn't work because (main) is not global. its inside IIFE
+//line to 77 just adding for testing purpose
+    btn.addEventListener('click', function() {
         modal.style.display = "none";
         player.reset();
-        player.victory();
+       // player.win = false; for testing
         win.requestAnimationFrame(main);
-    })*/
+    });
+    
     /* This function does some initial setup that should only occur once,
      * particularly setting the lastTime variable that is required for the
      * game loop.
@@ -101,7 +115,7 @@ var Engine = (function(global) {
      * render methods.
      */
     function updateEntities(dt) {
-        allEnemies.forEach(function(enemy) {
+       allEnemies.forEach(function(enemy) {
            enemy.update(dt);
         });
          player.update();
@@ -197,3 +211,7 @@ var Engine = (function(global) {
 
     global.ctx = ctx;
 })(this);
+
+
+
+
