@@ -6,8 +6,7 @@ Students should use this [rubric](https://review.udacity.com/#!/projects/2696458
 For detailed instructions on how to get started, check out this [guide](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
 
 ## How to install the game
-
-Go to github.com and fork the folder to your computer and you can make changes or add more features to game on your own.
+Go to github.com and fork the folder to your computer 
 
 ## How to play the game
 
@@ -21,19 +20,10 @@ Go to github.com and fork the folder to your computer and you can make changes o
 The the player has to walk across the enemy bugs without get hit till the water and win. If the player hits the enemy bug the will come the original point and start over again. Click on play again button to replay the game once the player wins.
 
 
-## what is the player should expect from the game
-
-This is just a simple game there is no score or rating that reflex the player performance. 
-
-
-## Game dependencies 
-
-All code in app.js was written in Vanilla js
+## Resource 
+ Got help by Udacity student walkthrou @Matthew cranford 
+ Got by @lloan Udacity student 
 
 
-## Contributing
-
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
 
   
