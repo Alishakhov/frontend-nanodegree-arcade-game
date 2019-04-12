@@ -23,15 +23,14 @@ var Engine = (function(global) {
         canvas = doc.createElement('canvas'),
         ctx = canvas.getContext('2d'),
         lastTime;
-        
-    canvas.width = 505;
-    canvas.height = 606;
-    doc.body.appendChild(canvas);
+        canvas.width = 505;
+        canvas.height = 606;
+        doc.body.appendChild(canvas);
 
- let btn = document.querySelector('#btn');
- let modal = document.querySelector('#modal');
-    
- //const dialog = document.getElementById('modal');
+    let btn = document.querySelector('#btn'),
+        modal = document.querySelector('#modal');
+        
+
     /* This function serves as the kickoff point for the game loop itself
      * and handles properly calling the update and render methods.
      */
@@ -66,13 +65,7 @@ var Engine = (function(global) {
         }else {
             win.requestAnimationFrame(main);
         }
-         // for testing 64 to 70
-           /* if(player.win === true) {
-                win.cancelAnimationFrame(main);
-                modal.style.display = "block";
-            }else {
-                win.requestAnimationFrame(main);
-            }*/
+        
     }
 //I have tried to add  addEventListener in app,js didn't work because (main) is not global. its inside IIFE
 //line to 77 just adding for testing purpose

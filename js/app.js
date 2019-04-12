@@ -27,61 +27,58 @@ Enemy.prototype.render = function() {
 };
 
 // Now write your own player class
-var Hero = function () {
-    this.x = 202;
-    this.y = 392; //83*4+60
-    this.blockHeight = 83;
-    this.blockWidth = 101;
-    this.sprite = 'images/char-boy.png';
-};
+class Hero {
+    constructor() {
+        this.x = 202;
+        this.y = 392; //83*4+60
+        this.blockHeight = 83;
+        this.blockWidth = 101;
+        this.sprite = 'images/char-boy.png';
+     
+      
+    }
 
-// This class requires an render() 
-Hero.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-};
+    // Draw the hero the screen
+    render() {
+        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    }
 
-// This class requires an update()
-Hero.prototype.update = function() {
+    // Check if the enemy and the hero hit each other and update the hero
+    update () {
     //loop over each enemy bugs 
-   for(let enemy of allEnemies) {
-       if(this.y === enemy.y && (enemy.x + 41 > this.x && enemy.x < this.x + 41)){
-            this.x = 202;
-            this.y = 392;
-           // alert('Try again!');
-         }   
+        for(let enemy of allEnemies) {
+            if(this.y === enemy.y && (enemy.x + 41 > this.x && enemy.x < this.x + 41)){
+                this.x = 202;
+                this.y = 392;
+            }   
       //enemy's length = 101 - 60 = 41 the 60 from the top this.y = 392; //83*4+60
-   }
+        }
+    }
 
- Hero.prototype.reset = function() {
-     this.x = 202;
-     this.y = 392;
- }
-  //i got the -23 from the console this.y
-  //when I tested this.y < 0  also works
-  //for testing line 62 to 64 have moved to engine.js
-    /* if(this.y === -23 ) {
-       this.win = true;
-     }*/
-  // console.log(this.y);
-};
+    // Reset hero the original position
+    reset() {
+        this.x = 202;
+        this.y = 392;
+    }
 
-// a handleInput() method.
-Hero.prototype.handleInput = function(keyPress) {
-    if(keyPress === "left" && this.x > 0) {
-        this.x -= this.blockWidth;
+    // a handleInput() method.
+    handleInput (keyPress) {
+        if(keyPress === "left" && this.x > 0) {
+            this.x -= this.blockWidth;
         //404 = 505 - 101
-    }else if(keyPress === "right" && this.x < 404) {
+        }else if(keyPress === "right" && this.x < 404) {
         this.x += this.blockWidth;
  
         //0 is the original point
         //actually keyup no need this.y > 0
-    }else if(keyPress === "up") {
-        this.y -= this.blockHeight;
-    }else if(keyPress === "down" && this.y < 392) {
-        this.y += this.blockHeight;
+        }else if(keyPress === "up") {
+            this.y -= this.blockHeight;
+        }else if(keyPress === "down" && this.y < 392) {
+            this.y += this.blockHeight;
+        }
     }
-};
-
+}
+   
 // Now instantiate your objects.
 // Place the player object in a variable called player
 const player = new Hero();
@@ -95,7 +92,6 @@ document.addEventListener('keyup', function(e) {
         39: 'right',
         40: 'down'
     };
-
     player.handleInput(allowedKeys[e.keyCode]);
 });
 
@@ -107,14 +103,8 @@ const enemy4 = new Enemy(-101, 226, 200);
 const enemy5 = new Enemy(-101, 60, 400);
 
 // Place all enemy objects in an array called allEnemies
-allEnemies = [enemy1, enemy2, enemy3, enemy4, enemy5];
-//allEnemies.push(enemy1, enemy2, enemy3, enemy4, enemy5);
+const allEnemies = [enemy1, enemy2, enemy3, enemy4, enemy5];
 
-
-
-//https://github.com/SSQ/Udacity-FEND-P7-Classic-Arcade-Game-Clone/blob/master/js/app.js
-//https://matthewcranford.com/arcade-game-walkthrough-part-5-adding-enemies
-//https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
 
 
 
