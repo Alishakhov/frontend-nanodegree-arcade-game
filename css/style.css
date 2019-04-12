@@ -1,6 +1,16 @@
 body {
     text-align: center;
-    background: rgba(7, 7, 12, 0.8);
+    background: rgb(0, 0, 1);
+}
+
+header>h1 {
+    padding-top: 20px;
+    font-size: 36px;
+    color: #f80e0e;
+    text-transform: uppercase;
+    word-spacing: 2ch;
+    letter-spacing: .5ch;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
  #btn {
@@ -12,11 +22,13 @@ dialog {
     height: auto;
     border: #ffffff;
     position: absolute;
-    background: #FFF;
+    background: #fff;
     margin-top: 200px;
+    color: #333;
+
 }
 
 button {
-    background: #0ff;
+    background: rgb(145, 255, 0);
     padding: 10px 10px;
 }
